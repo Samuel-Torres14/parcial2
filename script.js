@@ -70,4 +70,16 @@ function midpointCircle(ctx, xc, yc, r, color = "#000") {
         drawPixel(ctx, xc - y, yc - x, color);
 
         x++;
-        
+
+         /**Parámetro de decisión:
+         * p < 0 : el punto está dentro y solo avanzamos en x
+         * p >= 0 : el punto está fuera y decrementamos  y */
+
+        if (p < 0) {
+            p = p + 2 * x + 1;
+        } else {
+            y--;
+            p = p + 2 * (x - y) + 1;
+        }
+    }
+}
