@@ -83,3 +83,20 @@ function midpointCircle(ctx, xc, yc, r, color = "#000") {
         }
     }
 }
+// funcion para poligono (segun el ejemplo)
+function getPolygonVertices(cx, cy, sides, radius) {
+
+    let vertices = [];
+
+    for (let i = 0; i < sides; i++) {
+
+        let angle = (2 * Math.PI * i) / sides;
+
+        let x = cx + radius * Math.cos(angle);
+        let y = cy + radius * Math.sin(angle);
+
+        vertices.push({ x, y });
+    }
+
+    return vertices;
+}
