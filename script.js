@@ -100,3 +100,43 @@ function getPolygonVertices(cx, cy, sides, radius) {
 
     return vertices;
 }
+// parte del main para inicializar todo en conjunto 
+window.onload = function () {
+
+    // obtiene el canvas y su contexto 2D para dibujar
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // calcula el centro del canvas (punto de referencia geometrico)
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    // genera un numero aleatorio de lados entre 5 y 10
+    const sides = Math.floor(Math.random() * 6) + 5;
+
+    // define el radio del poligono
+    const R = 150;
+
+    // calcula los vertices del poligono usando trigonometria
+    const vertices = getPolygonVertices(centerX, centerY, sides, R);
+
+    /**dibujo del poligono:
+     * Se conectan los vertices consecutivos mediante el algoritmo de Bresenham.
+     * El uso de (i + 1) % n permite cerrar la figura uniendo el último vértice con el primero.
+     */
+    for (let i = 0; i < vertices.length; i++) {
+        let p1 = vertices[i];
+        let p2 = vertices[(i + 1) % vertices.length];
+
+        bresenhamLine(ctx, p1.x, p1.y, p2.x, p2.y);
+    }
+
+    /**Dibujo de circunferencias en cada vertice:
+     * Para cada punto del poligono se traza una circunferencia
+     * usando el algoritmo de punto medio, con radio R/4.
+     */
+    vertices.forEach(v => {
+        midpointCircle(ctx, v.x, v.y, R / 4);
+    });
+
+};
