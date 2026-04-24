@@ -48,3 +48,26 @@ function bresenhamLine(ctx, x0, y0, x1, y1, color = "#000") {
         }
     }
 }
+
+// funcion para circunferencia
+function midpointCircle(ctx, xc, yc, r, color = "#000") {
+
+    let x = 0;
+    let y = r;
+
+    let p = 1 - r;
+
+    while (x <= y) {
+
+        // Simetría de 8 octantes
+        drawPixel(ctx, xc + x, yc + y, color);
+        drawPixel(ctx, xc - x, yc + y, color);
+        drawPixel(ctx, xc + x, yc - y, color);
+        drawPixel(ctx, xc - x, yc - y, color);
+        drawPixel(ctx, xc + y, yc + x, color);
+        drawPixel(ctx, xc - y, yc + x, color);
+        drawPixel(ctx, xc + y, yc - x, color);
+        drawPixel(ctx, xc - y, yc - x, color);
+
+        x++;
+        
