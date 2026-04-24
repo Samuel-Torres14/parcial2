@@ -10,7 +10,7 @@ function drawPixel(ctx, x, y, color = "#000") {
     ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
 }
 
-// la funcion Bresenham
+// Funcion bresenham para la rasterizacion de lineas 
 function bresenhamLine(ctx, x0, y0, x1, y1, color = "#000") {
 
     x0 = Math.floor(x0);
@@ -90,7 +90,7 @@ function getPolygonVertices(cx, cy, sides, radius) {
 
     for (let i = 0; i < sides; i++) {
 
-        let angle = (2 * Math.PI * i) / sides;
+        let angle = (2 * Math.PI * i) / sides - Math.PI / 2;
 
         let x = cx + radius * Math.cos(angle);
         let y = cy + radius * Math.sin(angle);
